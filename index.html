@@ -1,445 +1,395 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Gamble of Becoming</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-  <style>
-    /* General Styles */
-    body {
-      font-family: 'Roboto', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(135deg, #f4f4f4, #e0e0e0);
-      color: #333;
-      line-height: 1.8;
-      overflow-x: hidden;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Day to Remember – DTU, Nukkad, and Abhivyakti</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2d3436;
+            --secondary-color: #6c5ce7;
+            --accent-color: #a29bfe;
+            --text-light: #dfe6e9;
+            --text-dark: #2d3436;
+            --transition: all 0.3s ease;
+        }
 
-    /* Navigation Bar */
-    nav {
-      background: linear-gradient(135deg, #2c3e50, #34495e);
-      color: #fff;
-      padding: 1.5rem 0;
-      text-align: center;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    nav h1 {
-      margin: 0;
-      font-size: 2.5rem;
-      font-family: 'Playfair Display', serif;
-      letter-spacing: 1px;
-      animation: fadeInDown 1s ease;
-    }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            background-color: #f5f6fa;
+        }
 
-    nav p {
-      margin: 0;
-      font-size: 1.1rem;
-      color: #bdc3c7;
-      animation: fadeInDown 1.5s ease;
-    }
+        .dark-mode {
+            --primary-color: #dfe6e9;
+            --text-dark: #f5f6fa;
+            --text-light: #2d3436;
+            background-color: #2d3436;
+            color: var(--text-dark);
+        }
 
-    nav ul {
-      list-style: none;
-      padding: 0;
-      margin: 1.5rem 0 0;
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      animation: fadeIn 2s ease;
-    }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
 
-    nav ul li {
-      display: inline;
-    }
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://via.placeholder.com/1920x1080');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--text-light);
+        }
 
-    nav ul li a {
-      color: #fff;
-      text-decoration: none;
-      font-size: 1.1rem;
-      font-weight: 500;
-      transition: color 0.3s ease, transform 0.3s ease;
-    }
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+        }
 
-    nav ul li a:hover {
-      color: #1abc9c;
-      transform: translateY(-3px);
-    }
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards;
+        }
 
-    /* Blog Container */
-    .blog-container {
-      max-width: 800px;
-      margin: 3rem auto;
-      padding: 2.5rem;
-      background: #fff;
-      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
-      border-radius: 15px;
-      animation: fadeInUp 1.5s ease;
-    }
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards 0.5s;
+        }
 
-    .blog-container h2 {
-      font-size: 2.8rem;
-      margin-bottom: 2rem;
-      color: #2c3e50;
-      text-align: center;
-      font-family: 'Playfair Display', serif;
-      letter-spacing: -1px;
-      animation: fadeIn 1s ease;
-    }
+        /* Blog Content */
+        .blog-section {
+            padding: 4rem 0;
+        }
 
-    .blog-container h3 {
-      font-size: 2rem;
-      margin-top: 3rem;
-      color: #34495e;
-      border-bottom: 3px solid #1abc9c;
-      padding-bottom: 0.5rem;
-      font-family: 'Playfair Display', serif;
-      animation: fadeInLeft 1s ease;
-    }
+        .blog-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--secondary-color);
+        }
 
-    .blog-container p {
-      font-size: 1.1rem;
-      margin-bottom: 2rem;
-      color: #555;
-      animation: fadeIn 1.5s ease;
-    }
+        .blog-section p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
 
-    .blog-container .date {
-      font-size: 0.95rem;
-      color: #7f8c8d;
-      margin-bottom: 2.5rem;
-      font-style: italic;
-      animation: fadeIn 1.5s ease;
-    }
+        .quote {
+            font-style: italic;
+            font-size: 1.3rem;
+            color: var(--secondary-color);
+            margin: 2rem 0;
+            padding-left: 1rem;
+            border-left: 4px solid var(--accent-color);
+        }
 
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 2rem 0;
-      background: linear-gradient(135deg, #2c3e50, #34495e);
-      color: #fff;
-      margin-top: 4rem;
-      box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2);
-    }
+        /* Image Gallery */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
 
-    footer p {
-      margin: 0;
-      font-size: 1rem;
-      animation: fadeIn 2s ease;
-    }
+        .image-gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            transition: var(--transition);
+            cursor: pointer;
+        }
 
-    /* Animations */
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
+        .image-gallery img:hover {
+            transform: scale(1.05);
+        }
 
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
 
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+        .team-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            cursor: pointer;
+        }
 
-    @keyframes fadeInLeft {
-      from { opacity: 0; transform: translateX(-20px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0,0,0,0.15);
+        }
 
-    /* Scroll Reveal Animation */
-    .reveal {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    }
+        .team-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
 
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
+        /* Music Player */
+        .music-player {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--secondary-color);
+            padding: 1rem;
+            border-radius: 50px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--text-light);
+            z-index: 1000;
+            cursor: pointer;
+            transition: var(--transition);
+        }
 
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      .blog-container {
-        margin: 1.5rem;
-        padding: 1.5rem;
-      }
+        .music-player:hover {
+            transform: scale(1.05);
+        }
 
-      nav h1 {
-        font-size: 2rem;
-      }
+        /* Dark Mode Toggle */
+        .dark-mode-toggle {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: var(--secondary-color);
+            color: var(--text-light);
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            z-index: 1000;
+            transition: var(--transition);
+        }
 
-      nav ul {
-        flex-wrap: wrap;
-        gap: 1rem;
-      }
+        .dark-mode-toggle:hover {
+            transform: scale(1.05);
+        }
 
-      .blog-container h2 {
-        font-size: 2.2rem;
-      }
+        .author-section {
+            text-align: right;
+            margin-top: 4rem;
+            font-style: italic;
+            color: var(--secondary-color);
+        }
 
-      .blog-container h3 {
-        font-size: 1.8rem;
-      }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-      .blog-container p {
-        font-size: 1rem;
-      }
-    }
-  </style>
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .blog-section h2 {
+                font-size: 2rem;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- Navigation Bar -->
-  <nav>
-    <h1>The Gamble of Becoming</h1>
-    <p>By Aditya Gupta</p>
-    <ul>
-      <li><a href="#chapter1">Chapter 1</a></li>
-      <li><a href="#chapter2">Chapter 2</a></li>
-      <li><a href="#chapter3">Chapter 3</a></li>
-      <li><a href="#chapter4">Chapter 4</a></li>
-      <li><a href="#chapter5">Chapter 5</a></li>
-      <li><a href="#chapter6">Chapter 6</a></li>
-      <li><a href="#chapter7">Chapter 7</a></li>
-    </ul>
-  </nav>
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌗 Toggle Dark Mode</button>
 
-  <!-- Blog Content -->
-  <div class="blog-container">
-    <h2>A Story of Creation, Destruction, and the Art of Rolling the Dice</h2>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>A Day to Remember</h1>
+            <p>DTU, Nukkad, and Abhivyakti</p>
+            <p>Some days aren't just days. Some days become stories.</p>
+        </div>
+    </section>
 
-    <!-- Chapter 1 -->
-    <div class="reveal">
-      <h3 id="chapter1">Chapter 1: Was It Always Meant to Happen?</h3>
-      <p class="date">September 12, 2023</p>
-      <p>
-        Let me tell you something. Life doesn’t always go as planned. And that’s okay.
-        <br><br>
-        September 12, 2023. That’s the day it all began. Or maybe, the day I walked into something that was always waiting for me.
-        <br><br>
-        I stepped into MAIT. Not as a student. But as a dreamer. A fresh start. A new world.
-        <br><br>
-        The first day? Nothing like I imagined. No nervous excitement. Just raw, unfiltered energy. Standing on the edge of something unknown.
-        <br><br>
-        And then I met them. F1 and F2. Two minds. Equally restless. Equally reckless.
-        <br><br>
-        We weren’t just three college kids. We were three people who looked at the world and saw possibility. Not assignments. Not exams. But the chance to create something that would be ours. Something that wouldn’t just make money. But make us matter.
-        <br><br>
-        That’s how our startup was born. It wasn’t perfect. But it was real. We built. We strategized. We dreamed. We were the wolves. And the world was ours to conquer.
-        <br><br>
-        But here’s the thing about things that burn too fast. They crash even faster.
-        <br><br>
-        The same thing that brought us together became the very thing that pulled us apart. Visions clashed. Priorities shifted. Brotherhood turned into rivalry.
-        <br><br>
-        The startup we built? Gone.
-        <br><br>
-        The people we were? Gone.
-        <br><br>
-        The worst part? I didn’t just lose a company. I lost a part of myself.
-      </p>
+    <div class="container">
+        <section class="blog-section" data-aos="fade-up">
+            <p class="quote">Today was one of them.</p>
+            <p>It started like any other—chaotic, loud, and full of last-minute panic. Costumes? Check. Script? Check. Butterflies in the stomach? Double check.</p>
+            <p>We, Abhivyakti—our college's dramatics club—were off to DTU for a Nukkad Natak competition. A fest. A stage. A play on women's health. But beyond all that? An experience. A memory. A bond.</p>
+        </section>
+
+        <section class="blog-section" data-aos="fade-up">
+            <h2>The Ride That Felt Like a Movie</h2>
+            <p>The cab was a world of its own.</p>
+            <p>Laughter that made our stomachs ache. Inside jokes that made zero sense but meant everything. A playlist that jumped from Bollywood classics to rap to random meme songs.</p>
+            <p>Priyansh cracking jokes that had us in tears. Sainsh making sure we stayed hyped. Kisan's random one-liners that came out of nowhere but hit perfectly.</p>
+            <p>By the time we reached, it already felt like a day worth remembering.</p>
+        </section>
+
+        <section class="blog-section" data-aos="fade-up">
+            <h2>The Play That Was More Than Just a Performance</h2>
+            <p>The moment we stepped into the circle, something changed. This wasn't just about acting anymore. It was real.</p>
+            <p>Amogh's voice carried like thunder, setting the stage. Aanya and Mahishika brought raw intensity, making the crowd pause and listen. Srishti, Bhoomi, and Kashvi—every expression, every movement, pure emotion. Ashu, always the loudest, making sure no word was unheard.</p>
+            <p>Some smiled. Some teared up. Some just stood there, thinking.</p>
+            <p>In that moment, we knew—we weren't just performing. We were making people feel.</p>
+        </section>
+
+        <section class="blog-section" data-aos="fade-up">
+            <h2>The People Who Made It Special</h2>
+            <p class="quote">Some names fade over time.<br>Some names become a part of who you are.<br>These? They're the second kind.</p>
+            
+            <div class="team-grid">
+                <div class="team-card" data-aos="fade-up">
+                    <h3>🎭 Sainsh</h3>
+                    <p>The heartbeat of the team, always making sure we stayed pumped.</p>
+                </div>
+                <div class="team-card" data-aos="fade-up">
+                    <h3>🎭 Priyansh</h3>
+                    <p>The guy who could turn any nervous moment into a joke.</p>
+                </div>
+                <div class="team-card" data-aos="fade-up">
+                    <h3>🎭 Ashu</h3>
+                    <p>Loud, fearless, full of energy—if chaos had a best friend, it'd be Ashu.</p>
+                </div>
+                <div class="team-card" data-aos="fade-up">
+                    <h3>🎭 Kisan</h3>
+                    <p>Sharp, witty, and always with the perfect line at the perfect time.</p>
+                </div>
+                <div class="team-card" data-aos="fade-up">
+                    <h3>🎭 Amogh</h3>
+                    <p>Calm when needed, intense when it mattered.</p>
+                </div>
+                <div class="team-card" data-aos="fade-up">
+                    <h3>🎭 Aanya</h3>
+                    <p>A fire on stage, impossible to ignore.</p>
+                </div>
+                <div class="team-card" data-aos="fade-up">
+                    <h3>🎭 Mahishika</h3>
+                    <p>The one who made acting feel effortless.</p>
+                </div>
+                <div class="team-card" data-aos="fade-up">
+                    <h3>🎭 Srishti</h3>
+                    <p>Quiet strength, powerful presence.</p>
+                </div>
+                <div class="team-card" data-aos="fade-up">
+                    <h3>🎭 Bhoomi</h3>
+                    <p>A performer through and through, owning every moment.</p>
+                </div>
+                <div class="team-card" data-aos="fade-up">
+                    <h3>🎭 Kashvi</h3>
+                    <p>The one who held us all together.</p>
+                </div>
+            </div>
+
+            <h2>Our Seniors</h2>
+            <div class="team-grid">
+                <div class="team-card" data-aos="fade-up">
+                    <h3>🌟 Swain sir</h3>
+                    <p>The mentor who saw what we couldn't see in ourselves.</p>
+                </div>
+                <div class="team-card" data-aos="fade-up">
+                    <h3>🌟 Arushi ma'am</h3>
+                    <p>The perfectionist who made sure we didn't just act, but connected.</p>
+                </div>
+                <div class="team-card" data-aos="fade-up">
+                    <h3>🌟 Vishwas sir</h3>
+                    <p>The steady voice of reason, always pushing us to be better.</p>
+                </div>
+                <div class="team-card" data-aos="fade-up">
+                    <h3>🌟 Arunay sir</h3>
+                    <p>The silent force, always there, always guiding.</p>
+                </div>
+                <div class="team-card" data-aos="fade-up">
+                    <h3>🌟 Arunav sir</h3>
+                    <p>The one who brought confidence into the room like it was easy.</p>
+                </div>
+                <div class="team-card" data-aos="fade-up">
+                    <h3>🌟 Bhoomi ma'am</h3>
+                    <p>The leader who made sure we never settled for average.</p>
+                </div>
+                <div class="team-card" data-aos="fade-up">
+                    <h3>🌟 Vanshika ma'am</h3>
+                    <p>The biggest cheerleader, the loudest supporter.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="blog-section" data-aos="fade-up">
+            <h2>The Takeaway</h2>
+            <p>It wasn't just about a competition.<br>It wasn't just about acting.<br>It was about being part of something bigger than ourselves.</p>
+            <p class="quote">Some days aren't just days.<br>This was one of them.</p>
+            
+            <div class="author-section">
+                <p>Who am I?<br>Aditya. That's enough.</p>
+            </div>
+        </section>
+
+        <!-- Image Gallery Section -->
+        <section class="blog-section" data-aos="fade-up">
+            <h2>Gallery</h2>
+            <div class="image-gallery">
+                <img src="https://via.placeholder.com/400x300" alt="Gallery Image 1">
+                <img src="https://via.placeholder.com/400x300" alt="Gallery Image 2">
+                <img src="https://via.placeholder.com/400x300" alt="Gallery Image 3">
+                <img src="https://via.placeholder.com/400x300" alt="Gallery Image 4">
+                <img src="https://via.placeholder.com/400x300" alt="Gallery Image 5">
+                <img src="https://via.placeholder.com/400x300" alt="Gallery Image 6">
+            </div>
+        </section>
     </div>
 
-    <!-- Chapter 2 -->
-    <div class="reveal">
-      <h3 id="chapter2">Chapter 2: Was It a Trap All Along?</h3>
-      <p>
-        Electronics. The course I had chosen. The one that was supposed to define my future.
-        <br><br>
-        It didn’t take long for the realization to sink in: I hated it.
-        <br><br>
-        Every class felt like a trap. Every lecture, a slow death. This wasn’t me. I wasn’t built for circuit diagrams and transistor theories. I was built for something else. Something bigger. But what?
-        <br><br>
-        I didn’t have the answer. So I did the hardest thing I had ever done.
-        <br><br>
-        I quit.
-        <br><br>
-        Not physically—I was still in college—but mentally, I checked out.
-        <br><br>
-        For the next four months, I was caught in an endless loop of self-doubt, frustration, and regret.
-        <br><br>
-        I tried to escape by doing the one thing that had failed me before: JEE.
-        <br><br>
-        One more attempt. One more desperate shot at changing my fate.
-        <br><br>
-        And guess what?
-        <br><br>
-        I ended up almost exactly where I started. Again.
-        <br><br>
-        Was this a sign? A cruel joke from the universe? Or was I just running in circles, refusing to accept something I wasn’t ready to face?
-      </p>
+    <div class="music-player">
+        🎵 Now Playing: Team Playlist
     </div>
 
-    <!-- Chapter 3 -->
-    <div class="reveal">
-      <h3 id="chapter3">Chapter 3: The Place I Never Chose</h3>
-      <p>
-        I landed at JIIT. Not by choice. But by fate. The branch was my choice. The college wasn’t.
-        <br><br>
-        And yet… for the first time in a long time, I felt at peace.
-        <br><br>
-        Why? Because sometimes, the best thing isn’t the perfect thing. It’s the thing that stops the cycle of regret.
-        <br><br>
-        The first day felt different. A fresh slate. A new beginning. No baggage. No expectations.
-        <br><br>
-        I made friends. I found laughter. I settled in. But deep down, I knew this wasn’t the climax of my story.
-        <br><br>
-        Because something far darker was waiting for me.
-      </p>
-    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
 
-    <!-- Chapter 4 -->
-    <div class="reveal">
-      <h3 id="chapter4">Chapter 4: The Question That Broke Me</h3>
-      <p>
-        It started with a thought. A simple, innocent question.
-        <br><br>
-        “What is reality?”
-        <br><br>
-        Most people ask and forget. I asked and fell into a rabbit hole.
-        <br><br>
-        Philosophy. Psychology. Existentialism.
-        <br><br>
-        It was intoxicating. It was terrifying. It was life-changing.
-        <br><br>
-        The more I read, the more I questioned. The more I questioned, the more I unraveled myself.
-        <br><br>
-        One night, in a moment of absolute clarity—or madness—I wrote something.
-        <br><br>
-        "I stood tall, and they praised me. I spoke with certainty, and they listened. Strength drew them near, admiration was abundant—but was it real?"
-        <br><br>
-        "So I unraveled it. I dimmed my light, softened my voice, became the lowest among them. And as I fell, I watched."
-        <br><br>
-        "Some turned away, their loyalty tied only to what I was, not who I am. Others revealed scorn, where once there was praise."
-        <br><br>
-        "What I lost was an illusion. What remained was the truth. And in that truth, I found power."
-        <br><br>
-        That night, something inside me snapped.
-        <br><br>
-        I stopped being me.
-      </p>
-    </div>
-
-    <!-- Chapter 5 -->
-    <div class="reveal">
-      <h3 id="chapter5">Chapter 5: The Biggest Gamble of My Life</h3>
-      <p>
-        I ruined myself.
-        <br><br>
-        Not by accident.
-        <br><br>
-        On purpose.
-        <br><br>
-        I dismantled everything that made me… me.
-        <br><br>
-        My charm. My intellect. My confidence.
-        <br><br>
-        I wanted to see what would happen. I wanted to see who stayed and who left.
-        <br><br>
-        The result?
-        <br><br>
-        I became a joke.
-        <br><br>
-        People laughed at me. Mocked me. Dissected every action, every word, every movement.
-        <br><br>
-        And I let them.
-        <br><br>
-        Did it hurt? Yes.
-        <br><br>
-        Did I regret it? No.
-        <br><br>
-        Because through the pain, I saw the truth.
-      </p>
-    </div>
-
-    <!-- Chapter 6 -->
-    <div class="reveal">
-      <h3 id="chapter6">Chapter 6: The Price of the Experiment</h3>
-      <p>
-        But here’s the thing about experiments.
-        <br><br>
-        Once you become something else, you don’t always find your way back.
-        <br><br>
-        I lost myself.
-        <br><br>
-        I had played a role for so long that I forgot who I actually was.
-        <br><br>
-        I had become a character in my own story.
-        <br><br>
-        And the scariest part?
-        <br><br>
-        I didn’t know if I could ever return.
-      </p>
-    </div>
-
-    <!-- Chapter 7 -->
-    <div class="reveal">
-      <h3 id="chapter7">Chapter 7: The Final Roll of the Dice</h3>
-      <p>
-        Looking back, I realized something.
-        <br><br>
-        What I destroyed, I could rebuild.
-        <br><br>
-        If I had the power to erase myself, I had the power to create myself again.
-        <br><br>
-        So I made a decision.
-        <br><br>
-        Let’s roll the dice again.
-      </p>
-    </div>
-
-    <!-- Epilogue -->
-    <div class="reveal">
-      <h3>Epilogue: Who Were F1 and F2?</h3>
-      <p>
-        (You didn’t think I’d forget, did you?)
-        <br><br>
-        Their names?
-        <br><br>
-        That’s not the point.
-        <br><br>
-        The real question is—does it matter?
-        <br><br>
-        Because in the end, this story was never about them.
-        <br><br>
-        It was about me.
-        <br><br>
-        The Gamble of Becoming.
-        <br><br>
-        And the realization that, in life—we are all rolling the dice.
-      </p>
-    </div>
-  </div>
-
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2023 Aditya Gupta. All rights reserved.</p>
-  </footer>
-
-  <!-- JavaScript for Scroll Reveal -->
-  <script>
-    const revealElements = document.querySelectorAll('.reveal');
-
-    const revealOnScroll = () => {
-      revealElements.forEach((element) => {
-        const elementTop = element.getBoundingClientRect().top;
-        const windowHeight = window.innerHeight;
-
-        if (elementTop < windowHeight - 100) {
-          element.classList.add('active');
+        // Dark Mode Toggle
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
         }
-      });
-    };
 
-    window.addEventListener('scroll', revealOnScroll);
-    revealOnScroll(); // Trigger on initial load
-  </script>
+        // Parallax Effect
+        window.addEventListener('scroll', () => {
+            const hero = document.querySelector('.hero');
+            const scrolled = window.pageYOffset;
+            hero.style.backgroundPositionY = scrolled * 0.5 + 'px';
+        });
+    </script>
 </body>
 </html>
